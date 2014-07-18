@@ -1,0 +1,45 @@
+---
+dataversion: 0.0
+
+params::network::domains:
+    -   name: macbookpro
+        subnet: 1.0.0.0
+        dhcpserver:
+            interface: eth0
+            range: 1.0.0.1 1.0.0.255
+            fixed:
+                -   mac: 00:0c:29:d5:16:6b
+                    ip: 1.0.0.1
+                    name: static-2
+                -   mac: 00:0c:29:87:86:d2
+                    ip: 1.0.0.3
+                    name: static-1
+        gateway:
+            interface: 
+                int: eth0
+                ext: eth1
+    -   name: sm.guavus.com
+        subnet: 10.10.0.0
+        nameserver:
+            ip: 10.10.10.128
+        gateway:
+            ip: 1.0.0.1
+    -   name: qa.guavus.com
+        nameserver:
+            ip: 192.168.0.149
+    -   name: in.guavus.com
+        nameserver:
+            ip: 192.168.0.149
+pxe::server::isos:
+    -   name: CentOS-6.4-x86_64-minimal.iso
+classes:
+    -   dev::settings
+    -   dhcp::server
+    -   dns::server
+    -   pxe::server
+    -   gateway
+    -   varnish::server
+    -   squid::server
+domain:
+    - macbookpro
+    
