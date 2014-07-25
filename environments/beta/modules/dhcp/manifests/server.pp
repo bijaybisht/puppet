@@ -1,9 +1,14 @@
-class dhcp::server inherits dhcp::params
+class dhcp::server
 {
+    include dhcp::params
+
+    $dhcpserver = $dhcp::params::dhcpserver
+    $zone       = $dhcp::params::zone
+    $secret     = $dhcp::params::secret
+
     #
     # Note: It's possible that this interface is actualled dhcp'ed from another dhcp. Ignore for now.
     #
-    notice($dhcpserver['interface'])
     interface::config { $dhcpserver['interface']:
         ip => $dhcpserver['ip']
     }

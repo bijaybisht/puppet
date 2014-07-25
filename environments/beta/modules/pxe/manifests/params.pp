@@ -1,13 +1,12 @@
-class pxe::params
+class pxe::params (
+    $isos,
+)
 {
-    include ::params
+    include http::params
+    include pxe::ro
     
-    $docroot  = $::params::docroot
-    $tftpboot = $::params::tftpboot
+    $tftpboot   = $pxe::ro::tftpboot
+    $docroot    = $http::params::docroot
 
-    $isolinux_r = 'isolinux'
-    $pxe_r      = 'pxe'
-    $iso_r      = 'pxe/iso'
-    $mnt_r      = 'pxe/mnt'
-    $ks_r       = 'pxe/ks'
+    $isos_name  = parseyaml(inline_template('<%= @isos.inject([]) {|a, e| a << e["name"]; a}.to_yaml %>'))
 }

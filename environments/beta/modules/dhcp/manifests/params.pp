@@ -1,10 +1,11 @@
 class dhcp::params
 {
-    include ::params::network
+    include network
+    include dns::params
 
-    $secret             = $::params::network::secret
+    $secret             = $dns::params::secret
 
-    $fqdn               = certnameto($::clientcert)
-    $zone               = $::params::network::domains_hash[$fqdn['domain']]
+    $fqdn_parts         = fromcertname($::clientcert)
+    $zone               = $network::domains_byname[$fqdn_parts['domain']]
     $dhcpserver         = $zone['dhcpserver']
 }

@@ -1,6 +1,13 @@
-class http::server
+class http::server 
 {
+    include http::params
+    $docroot = $http::params::docroot
+
     package { 'httpd' : }
+    ->
+    file { $docroot:
+        ensure => directory,
+    }
     ->
     service { 'httpd' : 
         ensure => running,
@@ -8,5 +15,4 @@ class http::server
     }
 
     iptables::filter { '-A INPUT -p tcp -m state --state NEW -m tcp --dport 80  -j ACCEPT': }
-    iptables::filter { '-A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT': }
 }

@@ -15,11 +15,11 @@ key dhcpupdate {
     secret <%= @secret %>;
 }
 <%
-    zone = @zone
-    dhcpserver = @dhcpserver
-    nameserver = zone['nameserver']
-    gateway    = zone['gateway']
-    pxeserver  = zone['pxeserver']
+    zone        = @zone
+    dhcpserver  = @dhcpserver
+    nameserver  = zone['nameserver']
+    gateway     = zone['gateway']
+    pxeserver   = zone['pxeserver']
 -%>
 
 zone <%= zone['name'] %> {

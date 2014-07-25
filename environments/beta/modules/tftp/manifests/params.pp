@@ -1,5 +1,5 @@
 class tftp::params
 {
-    include ::params
-    $tftpboot = $::params::tftpboot
+    include pxe::params
+    $tftpboot = $pxe::params::tftpboot
 }

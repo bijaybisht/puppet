@@ -3,4 +3,5 @@
 :yaml: 
     :datadir: /etc/puppet/hieradata
 :hierarchy:
+    -   "%{::environment}/clientcert/%{::clientcert}"
     -   "%{::environment}/common"

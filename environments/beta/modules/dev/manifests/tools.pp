@@ -9,7 +9,10 @@ class dev::tools
         }
     }
     else {
+        require repos::local
         package { 'git': }
         package { 'vim-enhanced': }
+        package { 'rpmdevtools': }
+        package { 'apache-maven': }
     }
 }

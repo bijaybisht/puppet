@@ -1,7 +1,7 @@
 class gateway::params
 {
-    include ::params::network
+    include network
 
-    $fqdn = certnameto($::clientcert)
-    $zone = $::params::network::domains_hash[$fqdn['domain']]
+    $fqdn_parts = fromcertname($::clientcert)
+    $zone       = $network::domains_byname[$fqdn_parts['domain']]
 }

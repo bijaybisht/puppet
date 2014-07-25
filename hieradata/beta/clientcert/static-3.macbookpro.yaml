@@ -1,0 +1,8 @@
+classes:
+    -   dhcp::server
+    -   dns::server
+    -   pxe::server
+    -   gateway
+    -   varnish::server
+    -   squid::server
+    -   stats::tools

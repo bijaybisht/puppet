@@ -1,6 +1,15 @@
-class dns::server inherits dns::params
+class dns::server
 {
+    include dns::params
     include dns::client
+
+    $forwarders     = $dns::params::forwarders
+    $secret         = $dns::params::secret
+    $alias          = $dns::params::alias
+    $domain         = $dns::params::domain
+    $domains        = $dns::params::domains
+    $domains_byname = $dns::params::domains_byname
+
 
     package { 'bind': }
     ->

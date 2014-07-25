@@ -1,21 +1,30 @@
-class pxe::server (
-    $isos,
-) inherits pxe::params
+class pxe::server
 {
+    include pxe::params
     include tftp::server, http::server, rsyslog
 
-    $isos_name = parseyaml(inline_template('<%= @isos.inject([]) {|a, e| a << e["name"]; a}.to_yaml %>'))
+    #
+    # FixMe: server url, currentlys using fqdn
+    #
 
-    $isolinux = "$tftpboot/$isolinux_r"
+    $isos_name  = $pxe::params::isos_name
+    $tftpboot   = $pxe::params::tftpboot
+    $docroot    = $pxe::params::docroot
+    $isolinux_r = 'isolinux'
+    $pxe_r      = 'pxe'
+    $iso_r      = 'pxe/iso'
+    $mnt_r      = 'pxe/mnt'
+    $ks_r       = 'pxe/ks'
 
-    $mnt    = "$docroot/$mnt_r"
-    $iso    = "$docroot/$iso_r"
-    $ks     = "$docroot/$ks_r"
-    $pxe    = "$docroot/$pxe_r"
+    $pxe        = "$docroot/$pxe_r"
+    $mnt        = "$docroot/$mnt_r"
+    $iso        = "$docroot/$iso_r"
+    $ks         = "$docroot/$ks_r"
+    $isolinux   = "$tftpboot/$isolinux_r"
 
     package { 'syslinux-tftpboot': }
     ->
-    file { ["$tftpboot/pxelinux.cfg", $isolinux]:
+    file { ["$tftpboot/pxelinux.cfg", "$isolinux" ]:
         ensure => directory,
     }
 
@@ -23,7 +32,7 @@ class pxe::server (
         content => template('pxe/default.1.erb')
     }
 
-    file { [$pxe, $ks, $iso, $mnt]:
+    file { [ "$pxe", "$mnt", "$iso", "$ks" ]:
         ensure => 'directory'
     }
 

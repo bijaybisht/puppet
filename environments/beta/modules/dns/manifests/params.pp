@@ -1,17 +1,15 @@
-class dns::params
-{
-    include ::params::network
+class dns::params (
+    $secret             = "ONktz0u8IMbbGZ/1kCKKfA==",
+    $forwarders         = ['8.8.8.8', '8.8.4.4'],
+){
+    include network
 
-    $secret         = $::params::network::secret
-    $forwarders     = $::params::network::forwarders
-    $domains        = $::params::network::domains
-    $domains_hash   = $::params::network::domains_hash
+    $domains        = $network::domains
+    $domains_byname = $network::domains_byname
 
-    notice($clientcert)
+    $fqdn_parts     = fromcertname($::clientcert)
+    $alias          = $fqdn_parts['host']
+    $domain         = $fqdn_parts['domain']
 
-    $fqdn           = certnameto($::clientcert)
-    $alias          = $fqdn['alias']
-    $domain         = $fqdn['domain']
-
-    $nameserver     = $domains_hash[$domain]['nameserver']
+    $nameserver     = $domains_byname[$domain]['nameserver']
 }
