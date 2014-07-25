@@ -24,7 +24,7 @@ or the instructions http://docs.puppetlabs.com/guides/install_puppet/pre_install
 * Checkout this repo to /etc/puppet
 * Generate the ssl keys for the ca
 ```
-puppet agent --no-daemonize --verbose --config <puppet.conf>
+puppet agent --no-daemonize --verbose --config <puppet.conf> --certname <certname>
 ```
 
 ## Known Issues:

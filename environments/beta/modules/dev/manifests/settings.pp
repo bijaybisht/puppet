@@ -7,7 +7,7 @@ class dev::settings (
     define vimrc {
         concat::fragment { $name:
             target => "$home/.vimrc",
-            content => "$content\n"
+            content => "$name\n"
         }
     }
     vimrc { "set tabstop=4 shiftwidth=4 expandtab": }

@@ -4,14 +4,14 @@ class repos::tools
 
     $base_r = 'tools'
     $base   = "${http::params::docroot}/$base_r"
-    $url    = "http://$repos::tools::fqdn/$base_r"
+    $url    = "http://${repos::tools::fqdn}/$base_r"
 
     if $::clientcert == $repos::tools::fqdn {
         include http::server
 
         repos::create { $base: }
         ->
-        yumrepo { 'tools':
+        yumrepo { "$base_r":
             baseurl => "file://$base",
             gpgcheck => 0,
         }
@@ -21,7 +21,7 @@ class repos::tools
     else {
         notice("Ensure node repos::tools::fqdn [${repos::tools::fqdn}] is running repos::tools and serving $url")
 
-        yumrepo { 'tools':
+        yumrepo { "$base_r":
             baseurl => $url,
             gpgcheck => 0,
         }
