@@ -34,12 +34,7 @@ network::domains:
 pxe::params::isos:
     -   name: CentOS-6.4-x86_64-minimal.iso
 
-services::params::services:
-    -   name: yumserver
-        fqdn: static-3.macbookpro
-    -   name: maven::server
-        fqdn: static-3.macbookpro
+repos::tools::fqdn: osc3.onestopconfigure.net
 
 classes:
     -   dev::settings
-    -   services

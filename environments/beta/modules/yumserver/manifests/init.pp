@@ -5,11 +5,5 @@ class yumserver
 
     $base = $yumserver::params::base
 
-    package { 'createrepo': }
-    ->
-    file { $base:
-        ensure => directory,
-    }
-    ->
-    exec { "/usr/bin/createrepo $base": }
+    repos::create { $base: }
 }
