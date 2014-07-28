@@ -1,7 +1,5 @@
-class dns::params (
-    $secret             = "ONktz0u8IMbbGZ/1kCKKfA==",
-    $forwarders         = ['8.8.8.8', '8.8.4.4'],
-){
+class dns::params
+{
     include network
 
     $domains        = $network::domains
@@ -12,4 +10,7 @@ class dns::params (
     $domain         = $fqdn_parts['domain']
 
     $nameserver     = $domains_byname[$domain]['nameserver']
+
+    $secret         = hiera('dns::params::secret', 'ONktz0u8IMbbGZ/1kCKKfA==')
+    $forwarders     = hiera('dns::params::forwarders', ['8.8.8.8', '8.8.4.4'])
 }

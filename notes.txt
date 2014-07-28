@@ -3,3 +3,9 @@
 2.  class for params (exported/imported). So that other classes can refer to its parameters.
 
 3.  The param class needs to be included.
+
+a.  Install puppet
+b.  Checkout to /etc/puppet
+
+c.  Prepare 'missing-rpms' repository.
+d.  Lets call this default. This has to be either on this server or point to other server.

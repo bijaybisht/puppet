@@ -34,7 +34,7 @@ network::domains:
 pxe::params::isos:
     -   name: CentOS-6.4-x86_64-minimal.iso
 
-repos::tools::fqdn: osc3.onestopconfigure.net
+repos::tools::fqdn: puppet.onestopconfigure.net
 
 classes:
     -   dev::settings

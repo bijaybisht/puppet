@@ -1,8 +1,5 @@
-class http::server 
+class http::server inherits http::params
 {
-    include http::params
-    $docroot = $http::params::docroot
-
     package { 'httpd' : }
     ->
     file { $docroot:

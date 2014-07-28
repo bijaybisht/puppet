@@ -1,4 +1,5 @@
-define repos::create {
+define repos::create 
+{
     package { 'createrepo': }
     ->
     file { $name:

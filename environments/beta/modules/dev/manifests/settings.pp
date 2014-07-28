@@ -4,13 +4,16 @@ class dev::settings (
     require dev::tools
 
     concat { "$home/.vimrc": }
+
     define vimrc {
         concat::fragment { $name:
             target => "$home/.vimrc",
             content => "$name\n"
         }
     }
+    
     vimrc { "set tabstop=4 shiftwidth=4 expandtab": }
+    vimrc { "set mouse=a": }
 
     file { ["$home/.vim", "$home/.vim/autoload", "$home/.vim/bundle"]:
         ensure => directory,
@@ -20,6 +23,7 @@ class dev::settings (
         command => "/usr/bin/curl -LSso $home/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim",
         creates => "$home/.vim/autoload/pathogen.vim",
     }
+    ->
     vimrc { "execute pathogen#infect()": }
     ->
     exec { "nerdtree":

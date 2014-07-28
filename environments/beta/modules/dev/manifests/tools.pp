@@ -12,7 +12,5 @@ class dev::tools
         require repos::tools
         package { 'git': }
         package { 'vim-enhanced': }
-        package { 'rpmdevtools': }
-        package { 'apache-maven': }
     }
 }

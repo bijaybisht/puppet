@@ -1,9 +1,5 @@
-class tftp::server
+class tftp::server inherits tftp::params
 {
-    include tftp::params
-
-    $tftpboot = $tftp::params::tftpboot
-
     package { 'tftp-server': }
     ->
     file { '/etc/xinetd.d/tftp':

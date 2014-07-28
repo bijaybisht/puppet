@@ -1,4 +1,5 @@
 classes:
+    -   dev::build
     -   dhcp::server
     -   dns::server
     -   pxe::server

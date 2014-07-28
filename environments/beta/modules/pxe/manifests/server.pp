@@ -1,15 +1,11 @@
-class pxe::server
+class pxe::server inherits pxe::params
 {
-    include pxe::params
     include tftp::server, http::server, rsyslog
 
     #
     # FixMe: server url, currentlys using fqdn
     #
 
-    $isos_name  = $pxe::params::isos_name
-    $tftpboot   = $pxe::params::tftpboot
-    $docroot    = $pxe::params::docroot
     $isolinux_r = 'isolinux'
     $pxe_r      = 'pxe'
     $iso_r      = 'pxe/iso'

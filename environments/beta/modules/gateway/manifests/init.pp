@@ -1,8 +1,5 @@
-class gateway 
+class gateway inherits gateway::params
 {
-    include gateway::params
-    $zone = $gateway::params::zone
-
     gateway::privatedns { $zone['gateway']['interface']['ext']: }
     exec { '/bin/echo 1 > /proc/sys/net/ipv4/ip_forward': }
     
